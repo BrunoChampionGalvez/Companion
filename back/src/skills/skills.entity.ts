@@ -13,7 +13,7 @@ export class Skills {
     @Column()
     description: string
 
-    @Column()
+    @Column("text", {array: true})
     tips: string[]
 
     @Column()

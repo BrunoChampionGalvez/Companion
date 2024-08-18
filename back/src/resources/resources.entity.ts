@@ -16,6 +16,6 @@ export class Resources {
     @Column({nullable: true})
     url: string
 
-    @Column()
+    @Column("text", {array: true})
     images: string[]
 }

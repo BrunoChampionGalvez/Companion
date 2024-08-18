@@ -7,6 +7,5 @@ export class Quizzes {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @Column()
-    question
+    // Relacion con questions
 }

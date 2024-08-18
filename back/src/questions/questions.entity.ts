@@ -10,7 +10,7 @@ export class Questions {
     @Column()
     question: string
 
-    @Column()
+    @Column("text", {array: true})
     answers: string[]
 
     @Column()
