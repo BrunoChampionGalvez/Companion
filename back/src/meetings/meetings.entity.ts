@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Users } from "src/users/users.entity";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
     name: 'meetings'
@@ -12,4 +13,7 @@ export class Meetings {
 
     @Column({type: 'timestamp'})
     end: Date
+
+    @ManyToMany(() => Users, user => user.meetings)
+    users: Users[]
 }

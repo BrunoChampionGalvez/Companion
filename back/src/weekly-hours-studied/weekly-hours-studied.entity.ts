@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { DailyHoursStudied } from "src/daily-hours-studied/daily-hours-studied.entity";
+import { MonthlyHoursStudied } from "src/monthly-hours-studied/monthly-hours-studied.entity";
+import { Users } from "src/users/users.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
     name: 'weekly-hours-studied'
@@ -8,32 +11,26 @@ export class WeeklyHoursStudied {
     id: string
 
     @Column()
-    averageHoursPerDay: number
-
-    @Column()
-    averageHoursPerWeek: number
-
-    @Column()
-    averageHoursPerMonth: number
-
-    @Column()
-    averageHoursPerYear: number
-
-    @Column()
-    totalHoursPerDay: number
-
-    @Column()
-    totalHoursPerWeek: number
-
-    @Column()
-    totalHoursPerMonth: number
+    averageDailyHours: number
     
     @Column()
-    totalHoursPerYear: number
+    totalHours: number
 
     @Column()
     skillName: string
 
     @Column()
     skillImageUrl: string
+
+    @ManyToOne(() => Users, user => user.weeklyHoursStudied)
+    user: Users
+
+    @OneToMany(() => DailyHoursStudied, dailyHoursStudied => dailyHoursStudied.weeklyHoursStudied)
+    @JoinColumn({
+        name: 'daily_hours_studied'
+    })
+    dailyHoursStudied: DailyHoursStudied[]
+
+    @ManyToOne(() => MonthlyHoursStudied, monthlyHoursStudied => monthlyHoursStudied.weeklyHoursStudied)
+    monthlyHoursStudied: MonthlyHoursStudied
 }

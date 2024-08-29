@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Users } from "src/users/users.entity";
+import { WeeklyHoursStudied } from "src/weekly-hours-studied/weekly-hours-studied.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
     name: 'daily-hours-studied'
@@ -27,4 +29,10 @@ export class DailyHoursStudied {
 
     @Column()
     skillImageUrl: string
+
+    @ManyToOne(() => Users, user => user.dailyHoursStudied)
+    user: Users
+
+    @ManyToOne(() => WeeklyHoursStudied, weeklyHoursStudied => weeklyHoursStudied.dailyHoursStudied)
+    weeklyHoursStudied: WeeklyHoursStudied
 }

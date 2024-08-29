@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Users } from "src/users/users.entity";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
     name: 'badges'
@@ -15,4 +16,7 @@ export class Badges {
 
     @Column()
     scoreToGetIt: number
+
+    @ManyToMany(() => Users, user => user.badges)
+    users: Users[]
 }
