@@ -1,23 +1,26 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
-    name: 'hours-studied'
+    name: 'daily-hours-studied'
 })
-export class HoursStudied {
+export class DailyHoursStudied {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
     @Column()
-    averageHoursPerDay: number
+    date: number
 
     @Column()
-    averageHoursPerWeek: number
+    week: number
 
     @Column()
-    averageHoursPerMonth: number
+    month: number
 
     @Column()
-    averageHoursPerYear: number
+    year: number
+
+    @Column({type: 'float'})
+    totalHours: number
 
     @Column()
     skillName: string
